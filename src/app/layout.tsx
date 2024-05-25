@@ -8,7 +8,7 @@ import { QueryClientProvider } from '@/features/QueryClientProvider';
 import { BaseLayout } from '@/app/_ui/BaseLayout';
 
 export const metadata: Metadata = {
-  title: 'Nextjs13 Template',
+  title: 'Can I Afford',
   description: 'Created by Anton',
 };
 

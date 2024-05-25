@@ -6,10 +6,12 @@ type BaseLayoutProps = {
 
 export const BaseLayout = ({ children }: BaseLayoutProps) => {
   return (
-    <div className="min-h-full">
-      <div className="py-10">
-        <main>
-          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">{children}</div>
+    <div className="h-full">
+      <div className="flex h-full py-10">
+        <main className="flex flex-1">
+          <div className="flex flex-1 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            {children}
+          </div>
         </main>
       </div>
     </div>
