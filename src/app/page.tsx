@@ -11,6 +11,7 @@ export default function Home() {
   const [purchaseName, setPurchaseName] = useState('');
   const [purchasePrice, setPurchasePrice] = useState('');
   const [purchaseType, setPurchaseType] = useState<'cash' | 'credit'>();
+  const [purchaseJeopardize, setPurchaseJeopardize] = useState<'yes' | 'no'>();
   const [canAfford, setCanAfford] = useState<boolean>();
 
   return (
@@ -93,7 +94,7 @@ export default function Home() {
                 return;
               }
 
-              setCurrentStep(3);
+              setCurrentStep(4);
             }}
           >
             <h1 className="flex-1 whitespace-nowrap text-5xl">
@@ -137,6 +138,61 @@ export default function Home() {
           </form>
         )}
 
+        {canAfford === undefined && currentStep === 4 && (
+          <form
+            className="flex gap-8 items-center"
+            onSubmit={(e) => {
+              e.preventDefault();
+
+              if (purchaseJeopardize === 'yes') {
+                setCanAfford(false);
+                return;
+              }
+
+              setCanAfford(true);
+            }}
+          >
+            <h1 className="flex-1 whitespace-nowrap text-5xl">
+              It will jeopardize my financial situation
+            </h1>
+
+            <div className="inline-flex rounded-md shadow-sm" role="group">
+              <button
+                type="button"
+                onClick={() => setPurchaseJeopardize('yes')}
+                className={twMerge(
+                  'px-4 py-2 text-3xl font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700',
+                  purchaseJeopardize === 'yes' &&
+                    'bg-blue-700 text-white focus:text-white hover:bg-blue-700 hover:text-white',
+                )}
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                onClick={() => setPurchaseJeopardize('no')}
+                className={twMerge(
+                  'px-4 py-2 text-3xl font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700',
+                  purchaseJeopardize === 'no' &&
+                    'bg-blue-700 text-white focus:text-white hover:bg-blue-700 hover:text-white',
+                )}
+              >
+                No
+              </button>
+            </div>
+
+            <button
+              type="submit"
+              className={twMerge(
+                'h-11 w-11 invisible',
+                purchaseJeopardize && 'visible',
+              )}
+            >
+              <ArrowRightIcon />
+            </button>
+          </form>
+        )}
+
         {canAfford !== undefined && !canAfford && (
           <div>
             <h1 className="text-5xl mb-10">
@@ -167,7 +223,45 @@ export default function Home() {
               text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 onClick={() => {
                   setCanAfford(undefined);
-                  setCurrentStep(3);
+                }}
+              >
+                Go One Step back
+              </button>
+            </div>
+          </div>
+        )}
+
+        {canAfford !== undefined && canAfford && (
+          <div>
+            <h1 className="text-5xl mb-10">
+              Congratulations, you can afford{' '}
+              <span className="font-bold">
+                {formatUSDCompact(Number(purchasePrice))} {purchaseName}
+              </span>
+              .
+            </h1>
+
+            <div className="flex gap-4">
+              <button
+                className="text-3xl
+              text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                onClick={() => {
+                  setCanAfford(undefined);
+                  setCurrentStep(1);
+                  setPurchaseName('');
+                  setPurchasePrice('');
+                  setPurchaseType(undefined);
+                  setPurchaseJeopardize(undefined);
+                }}
+              >
+                Retry
+              </button>
+
+              <button
+                className="text-3xl
+              text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                onClick={() => {
+                  setCanAfford(undefined);
                 }}
               >
                 Go One Step back
