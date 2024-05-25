@@ -19,7 +19,7 @@ export default function Home() {
       <div>
         {canAfford === undefined && currentStep === 1 && (
           <form
-            className="flex gap-2 items-center"
+            className="flex flex-col sm:flex-row gap-2 items-center"
             onSubmit={(e) => {
               e.preventDefault();
               setCurrentStep(2);
@@ -28,7 +28,7 @@ export default function Home() {
             <h1 className="flex-1 whitespace-nowrap text-5xl">Can I Afford</h1>
 
             <input
-              className="text-5xl text-center border-b-2 border-b-black outline-none"
+              className="text-3xl sm:text-5xl text-center border-b-2 border-b-black outline-none"
               value={purchaseName}
               onChange={(e) => setPurchaseName(e.target.value)}
             />
@@ -47,7 +47,7 @@ export default function Home() {
 
         {canAfford === undefined && currentStep === 2 && (
           <form
-            className="flex gap-2 items-center"
+            className="flex flex-col sm:flex-row gap-2 items-center"
             onSubmit={(e) => {
               e.preventDefault();
               setCurrentStep(3);
@@ -58,7 +58,7 @@ export default function Home() {
             </h1>
 
             <input
-              className="text-5xl text-center border-b-2 border-b-black outline-none"
+              className="text-3xl sm:text-5xl text-center border-b-2 border-b-black outline-none"
               value={purchasePrice}
               onChange={(e) => {
                 const decimalRegex = /^\d*\.?\d*$/;
@@ -85,7 +85,7 @@ export default function Home() {
 
         {canAfford === undefined && currentStep === 3 && (
           <form
-            className="flex gap-8 items-center"
+            className="flex flex-col sm:flex-row gap-8 items-center"
             onSubmit={(e) => {
               e.preventDefault();
 
@@ -140,7 +140,7 @@ export default function Home() {
 
         {canAfford === undefined && currentStep === 4 && (
           <form
-            className="flex gap-8 items-center"
+            className="flex flex-col sm:flex-row gap-8 items-center"
             onSubmit={(e) => {
               e.preventDefault();
 
@@ -152,7 +152,7 @@ export default function Home() {
               setCanAfford(true);
             }}
           >
-            <h1 className="flex-1 whitespace-nowrap text-5xl">
+            <h1 className="flex-1 text-center text-5xl">
               It will jeopardize my financial situation
             </h1>
 
@@ -205,7 +205,7 @@ export default function Home() {
 
             <div className="flex gap-4">
               <button
-                className="text-3xl
+                className="text-xl sm:text-3xl
               text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 onClick={() => {
                   setCanAfford(undefined);
@@ -219,7 +219,7 @@ export default function Home() {
               </button>
 
               <button
-                className="text-3xl
+                className="text-xl sm:text-3xl
               text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 onClick={() => {
                   setCanAfford(undefined);
@@ -243,7 +243,7 @@ export default function Home() {
 
             <div className="flex gap-4">
               <button
-                className="text-3xl
+                className="text-xl sm:text-3xl
               text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 onClick={() => {
                   setCanAfford(undefined);
@@ -258,7 +258,7 @@ export default function Home() {
               </button>
 
               <button
-                className="text-3xl
+                className="text-xl sm:text-3xl
               text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 onClick={() => {
                   setCanAfford(undefined);
